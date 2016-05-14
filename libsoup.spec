@@ -4,19 +4,22 @@
 #
 Name     : libsoup
 Version  : 2.52.2
-Release  : 3
+Release  : 4
 URL      : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.52/libsoup-2.52.2.tar.xz
 Source0  : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.52/libsoup-2.52.2.tar.xz
 Summary  : a glib-based HTTP library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
 Requires: libsoup-lib
+Requires: libsoup-data
 Requires: libsoup-doc
 Requires: libsoup-locales
 BuildRequires : curl-dev
 BuildRequires : docbook-xml
 BuildRequires : gettext
 BuildRequires : glib-networking
+BuildRequires : gobject-introspection
+BuildRequires : gobject-introspection-dev
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : intltool
@@ -31,10 +34,19 @@ BuildRequires : pkgconfig(sqlite3)
 libsoup is an HTTP client/server library for GNOME. It uses GObjects
 and the glib main loop, to integrate well with GNOME applications.
 
+%package data
+Summary: data components for the libsoup package.
+Group: Data
+
+%description data
+data components for the libsoup package.
+
+
 %package dev
 Summary: dev components for the libsoup package.
 Group: Development
 Requires: libsoup-lib
+Requires: libsoup-data
 Provides: libsoup-devel
 
 %description dev
@@ -52,6 +64,7 @@ doc components for the libsoup package.
 %package lib
 Summary: lib components for the libsoup package.
 Group: Libraries
+Requires: libsoup-data
 
 %description lib
 lib components for the libsoup package.
@@ -69,7 +82,7 @@ locales components for the libsoup package.
 %setup -q -n libsoup-2.52.2
 
 %build
-%configure --disable-static --disable-introspection --disable-vala
+%configure --disable-static --enable-introspection --disable-vala
 make V=1  %{?_smp_mflags}
 
 %install
@@ -79,6 +92,11 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/gir-1.0/Soup-2.4.gir
+/usr/share/gir-1.0/SoupGNOME-2.4.gir
 
 %files dev
 %defattr(-,root,root,-)
@@ -139,6 +157,8 @@ rm -rf %{buildroot}
 /usr/include/libsoup-gnome-2.4/libsoup/soup-gnome-features.h
 /usr/include/libsoup-gnome-2.4/libsoup/soup-gnome.h
 /usr/lib64/*.so
+/usr/lib64/girepository-1.0/Soup-2.4.typelib
+/usr/lib64/girepository-1.0/SoupGNOME-2.4.typelib
 /usr/lib64/pkgconfig/*.pc
 
 %files doc

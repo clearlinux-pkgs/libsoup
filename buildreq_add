@@ -3,3 +3,5 @@
 # desirable. One name per line, no whitespace.
 #
 glib-networking
+gobject-introspection-dev
+gobject-introspection
