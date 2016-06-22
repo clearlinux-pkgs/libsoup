@@ -1,12 +1,85 @@
-Changes in libsoup from 2.52.1 to 2.52.2:
+Changes in libsoup from 2.54.0.1 to 2.54.1:
 
-	* Fixed build under MinGW [Ignacio Casal Quintero]
+	* *** IMPORTANT ***
+          Fixed an ABI break in 2.54.0 caused by adding a member to
+          SoupAuthClass; 2.54.1 is ABI-compatible with 2.53.92 and
+          earlier, but NOT with the anomalous 2.54.0. If you built
+          packages against 2.54.0, you will need to rebuild them
+          against 2.54.1.
 
-	* Fix SoupServerWebsocketCallback handling so that the
-          SoupClientContext passed to it is still valid.
+	* Fixed NTLM authentication when ntlm_auth from the latest
+          version of Samba is present. [#765106, Milan Crha]
 
-	* Added a .deps file to define dependencies for valac
-	  [Rico Tzschichholz]
+	* Updates to MSVC build, including for GSS-API support
+          [Chun-wei Fan]
+
+	* Updated translations:
+	  Friulian
+
+Changes in libsoup from 2.53.92 to 2.54.0.1:
+
+	* (2.54.0.1 fixes a build problem with the 2.54.0 tarball,
+          which would not build if you configured with
+          "--without-gnome". There are no other changes between 2.54.0
+          and 2.54.0.1.)
+
+	* Fixed examples/simple-httpd on Windows [#758759, Chun-wei
+          Fan]
+
+Changes in libsoup from 2.53.90 to 2.53.92:
+
+	* libsoup now supports HTTP "Negotiate"/GSSAPI/Kerberos
+          authentication. It must be enabled specifically by the
+          application and is also subject to certain other
+          restrictions, some of which are not yet controllable through
+          the API. [#587145, Guido Guenther, Tomas Popela, David
+          Woodhouse, Dan Winship]
+
+	* Added support for building under MSVC [#758759, Chun-wei
+          Fan]
+
+	* Fixed a problem with the 2.53.90 tarball that caused
+          translations to be mis-installed.
+
+	* Updated translations:
+	  Occitan
+
+Changes in libsoup from 2.53.2 to 2.53.90:
+
+	* NUL bytes in headers are now ignored [#760832, Dan Winship]
+
+	* Fixed transfer annotation of soup_form_decode* functions
+          [#743966, Lionel Landwerlin]
+
+	* Updated translations:
+	  Bulgarian, Latvian, Norwegian bokmål
+
+Changes in libsoup from 2.53.1 to 2.53.2:
+
+	* Fixed up symbol visibility handling for mingw by copying
+          GLib's system [Ignacio Casal Quinteiro, #757146]
+
+	* Finally marked the old SoupSessionAsync and SoupSessionSync
+          methods as deprecated [Ignacio Casal Quinteiro, Dan Winship,
+          #757146]
+
+	* Added libsoup-2.4.deps for valac [Rico Tzschichholz]
+
+	* Make it possible to build from git without gtk-doc being
+          installed [Ignacio Casal Quinteiro]
+
+	* Updated translations:
+	  Norwegian bokmål, Occitan
+
+Changes in libsoup from 2.52.1 to 2.53.1:
+
+	* Really fixed build under MinGW for sure this time [Ignacio
+          Casal Quinteiro]
+
+        * Fixed SoupServer Web Sockets code so that the
+	  SoupClientContext passed to a SoupServerWebsocketCallback is
+	  fully usable (rather than crashing when you try to do most
+	  things).
 
 Changes in libsoup from 2.52.0 to 2.52.1:
 
