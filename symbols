@@ -21,6 +21,7 @@ libsoup-2.4.so.1:soup_address_resolve_async
 libsoup-2.4.so.1:soup_address_resolve_sync
 libsoup-2.4.so.1:soup_auth_authenticate
 libsoup-2.4.so.1:soup_auth_basic_get_type
+libsoup-2.4.so.1:soup_auth_can_authenticate
 libsoup-2.4.so.1:soup_auth_digest_get_type
 libsoup-2.4.so.1:soup_auth_domain_accepts
 libsoup-2.4.so.1:soup_auth_domain_add_path
@@ -56,6 +57,8 @@ libsoup-2.4.so.1:soup_auth_is_for_proxy
 libsoup-2.4.so.1:soup_auth_is_ready
 libsoup-2.4.so.1:soup_auth_manager_get_type
 libsoup-2.4.so.1:soup_auth_manager_use_auth
+libsoup-2.4.so.1:soup_auth_negotiate_get_type
+libsoup-2.4.so.1:soup_auth_negotiate_supported
 libsoup-2.4.so.1:soup_auth_new
 libsoup-2.4.so.1:soup_auth_ntlm_get_type
 libsoup-2.4.so.1:soup_auth_save_password
