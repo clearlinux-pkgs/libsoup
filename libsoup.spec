@@ -4,29 +4,38 @@
 #
 Name     : libsoup
 Version  : 2.54.1
-Release  : 7
+Release  : 8
 URL      : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
 Source0  : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
 Summary  : a glib-based HTTP library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0
 Requires: libsoup-lib
-Requires: libsoup-data
 Requires: libsoup-doc
 Requires: libsoup-locales
-BuildRequires : curl-dev
+BuildRequires : curl-dev32
 BuildRequires : docbook-xml
 BuildRequires : e2fsprogs-dev
+BuildRequires : e2fsprogs-dev32
+BuildRequires : gcc-dev32
+BuildRequires : gcc-libgcc32
+BuildRequires : gcc-libstdc++32
 BuildRequires : gettext
 BuildRequires : glib-networking
+BuildRequires : glib-networking-lib32
+BuildRequires : glibc-dev32
+BuildRequires : glibc-libc32
 BuildRequires : gobject-introspection
 BuildRequires : gobject-introspection-dev
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : intltool
-BuildRequires : krb5-dev
+BuildRequires : krb5-dev32
 BuildRequires : libxslt-bin
 BuildRequires : perl(XML::Parser)
+BuildRequires : pkgconfig(32glib-2.0)
+BuildRequires : pkgconfig(32libxml-2.0)
+BuildRequires : pkgconfig(32sqlite3)
 BuildRequires : pkgconfig(gio-2.0)
 BuildRequires : pkgconfig(glib-2.0)
 BuildRequires : pkgconfig(libxml-2.0)
@@ -36,23 +45,24 @@ BuildRequires : pkgconfig(sqlite3)
 libsoup is an HTTP client/server library for GNOME. It uses GObjects
 and the glib main loop, to integrate well with GNOME applications.
 
-%package data
-Summary: data components for the libsoup package.
-Group: Data
-
-%description data
-data components for the libsoup package.
-
-
 %package dev
 Summary: dev components for the libsoup package.
 Group: Development
 Requires: libsoup-lib
-Requires: libsoup-data
 Provides: libsoup-devel
 
 %description dev
 dev components for the libsoup package.
+
+
+%package dev32
+Summary: dev32 components for the libsoup package.
+Group: Default
+Requires: libsoup-lib32
+Requires: libsoup-dev
+
+%description dev32
+dev32 components for the libsoup package.
 
 
 %package doc
@@ -66,10 +76,17 @@ doc components for the libsoup package.
 %package lib
 Summary: lib components for the libsoup package.
 Group: Libraries
-Requires: libsoup-data
 
 %description lib
 lib components for the libsoup package.
+
+
+%package lib32
+Summary: lib32 components for the libsoup package.
+Group: Default
+
+%description lib32
+lib32 components for the libsoup package.
 
 
 %package locales
@@ -82,23 +99,42 @@ locales components for the libsoup package.
 
 %prep
 %setup -q -n libsoup-2.54.1
+pushd ..
+cp -a libsoup-2.54.1 build32
+popd
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1483240713
 %configure --disable-static --enable-introspection --disable-vala
 make V=1  %{?_smp_mflags}
 
+pushd ../build32/
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export CFLAGS="$CFLAGS -m32"
+export CXXFLAGS="$CXXFLAGS -m32"
+export LDFLAGS="$LDFLAGS -m32"
+%configure --disable-static --enable-introspection --disable-vala   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+make V=1  %{?_smp_mflags}
+popd
 %install
 rm -rf %{buildroot}
+pushd ../build32/
+%make_install32
+if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
+then
+pushd %{buildroot}/usr/lib32/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
+popd
 %make_install
 %find_lang libsoup
 
 %files
 %defattr(-,root,root,-)
-
-%files data
-%defattr(-,root,root,-)
-/usr/share/gir-1.0/Soup-2.4.gir
-/usr/share/gir-1.0/SoupGNOME-2.4.gir
+/usr/lib32/girepository-1.0/Soup-2.4.typelib
+/usr/lib32/girepository-1.0/SoupGNOME-2.4.typelib
 
 %files dev
 %defattr(-,root,root,-)
@@ -158,10 +194,22 @@ rm -rf %{buildroot}
 /usr/include/libsoup-gnome-2.4/libsoup/soup-cookie-jar-sqlite.h
 /usr/include/libsoup-gnome-2.4/libsoup/soup-gnome-features.h
 /usr/include/libsoup-gnome-2.4/libsoup/soup-gnome.h
-/usr/lib64/*.so
 /usr/lib64/girepository-1.0/Soup-2.4.typelib
 /usr/lib64/girepository-1.0/SoupGNOME-2.4.typelib
-/usr/lib64/pkgconfig/*.pc
+/usr/lib64/libsoup-2.4.so
+/usr/lib64/libsoup-gnome-2.4.so
+/usr/lib64/pkgconfig/libsoup-2.4.pc
+/usr/lib64/pkgconfig/libsoup-gnome-2.4.pc
+/usr/share/gir-1.0/*.gir
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libsoup-2.4.so
+/usr/lib32/libsoup-gnome-2.4.so
+/usr/lib32/pkgconfig/32libsoup-2.4.pc
+/usr/lib32/pkgconfig/32libsoup-gnome-2.4.pc
+/usr/lib32/pkgconfig/libsoup-2.4.pc
+/usr/lib32/pkgconfig/libsoup-gnome-2.4.pc
 
 %files doc
 %defattr(-,root,root,-)
@@ -231,8 +279,18 @@ rm -rf %{buildroot}
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/*.so.*
+/usr/lib64/libsoup-2.4.so.1
+/usr/lib64/libsoup-2.4.so.1.8.0
+/usr/lib64/libsoup-gnome-2.4.so.1
+/usr/lib64/libsoup-gnome-2.4.so.1.8.0
 
-%files locales -f libsoup.lang 
+%files lib32
+%defattr(-,root,root,-)
+/usr/lib32/libsoup-2.4.so.1
+/usr/lib32/libsoup-2.4.so.1.8.0
+/usr/lib32/libsoup-gnome-2.4.so.1
+/usr/lib32/libsoup-gnome-2.4.so.1.8.0
+
+%files locales -f libsoup.lang
 %defattr(-,root,root,-)
 
