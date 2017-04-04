@@ -4,12 +4,13 @@
 #
 Name     : libsoup
 Version  : 2.54.1
-Release  : 8
+Release  : 9
 URL      : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
 Source0  : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
 Summary  : a glib-based HTTP library
 Group    : Development/Tools
-License  : GPL-2.0 LGPL-2.0
+License  : LGPL-2.0
+Requires: libsoup-data
 Requires: libsoup-lib
 Requires: libsoup-doc
 Requires: libsoup-locales
@@ -45,10 +46,19 @@ BuildRequires : pkgconfig(sqlite3)
 libsoup is an HTTP client/server library for GNOME. It uses GObjects
 and the glib main loop, to integrate well with GNOME applications.
 
+%package data
+Summary: data components for the libsoup package.
+Group: Data
+
+%description data
+data components for the libsoup package.
+
+
 %package dev
 Summary: dev components for the libsoup package.
 Group: Development
 Requires: libsoup-lib
+Requires: libsoup-data
 Provides: libsoup-devel
 
 %description dev
@@ -59,6 +69,7 @@ dev components for the libsoup package.
 Summary: dev32 components for the libsoup package.
 Group: Default
 Requires: libsoup-lib32
+Requires: libsoup-data
 Requires: libsoup-dev
 
 %description dev32
@@ -76,6 +87,7 @@ doc components for the libsoup package.
 %package lib
 Summary: lib components for the libsoup package.
 Group: Libraries
+Requires: libsoup-data
 
 %description lib
 lib components for the libsoup package.
@@ -84,6 +96,7 @@ lib components for the libsoup package.
 %package lib32
 Summary: lib32 components for the libsoup package.
 Group: Default
+Requires: libsoup-data
 
 %description lib32
 lib32 components for the libsoup package.
@@ -105,7 +118,7 @@ popd
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1483240713
+export SOURCE_DATE_EPOCH=1491324173
 %configure --disable-static --enable-introspection --disable-vala
 make V=1  %{?_smp_mflags}
 
@@ -118,6 +131,7 @@ export LDFLAGS="$LDFLAGS -m32"
 make V=1  %{?_smp_mflags}
 popd
 %install
+export SOURCE_DATE_EPOCH=1491324173
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -135,6 +149,12 @@ popd
 %defattr(-,root,root,-)
 /usr/lib32/girepository-1.0/Soup-2.4.typelib
 /usr/lib32/girepository-1.0/SoupGNOME-2.4.typelib
+
+%files data
+%defattr(-,root,root,-)
+/usr/lib64/girepository-1.0/Soup-2.4.typelib
+/usr/lib64/girepository-1.0/SoupGNOME-2.4.typelib
+/usr/share/gir-1.0/*.gir
 
 %files dev
 %defattr(-,root,root,-)
@@ -194,13 +214,10 @@ popd
 /usr/include/libsoup-gnome-2.4/libsoup/soup-cookie-jar-sqlite.h
 /usr/include/libsoup-gnome-2.4/libsoup/soup-gnome-features.h
 /usr/include/libsoup-gnome-2.4/libsoup/soup-gnome.h
-/usr/lib64/girepository-1.0/Soup-2.4.typelib
-/usr/lib64/girepository-1.0/SoupGNOME-2.4.typelib
 /usr/lib64/libsoup-2.4.so
 /usr/lib64/libsoup-gnome-2.4.so
 /usr/lib64/pkgconfig/libsoup-2.4.pc
 /usr/lib64/pkgconfig/libsoup-gnome-2.4.pc
-/usr/share/gir-1.0/*.gir
 
 %files dev32
 %defattr(-,root,root,-)
