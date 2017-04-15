@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.54.1
-Release  : 9
+Release  : 10
 URL      : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
 Source0  : http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
 Summary  : a glib-based HTTP library
@@ -118,8 +118,15 @@ popd
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1491324173
-%configure --disable-static --enable-introspection --disable-vala
+export SOURCE_DATE_EPOCH=1492267597
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export FCFLAGS="$CFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export FFLAGS="$CFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+export CXXFLAGS="$CXXFLAGS -O3 -Os -ffat-lto-objects -ffunction-sections -flto -fno-semantic-interposition "
+%configure --disable-static --enable-introspection --disable-vala --without-gssapi
 make V=1  %{?_smp_mflags}
 
 pushd ../build32/
@@ -127,11 +134,11 @@ export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
 export CFLAGS="$CFLAGS -m32"
 export CXXFLAGS="$CXXFLAGS -m32"
 export LDFLAGS="$LDFLAGS -m32"
-%configure --disable-static --enable-introspection --disable-vala   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
+%configure --disable-static --enable-introspection --disable-vala --without-gssapi   --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make V=1  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1491324173
+export SOURCE_DATE_EPOCH=1492267597
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
