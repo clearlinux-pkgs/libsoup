@@ -1,5 +1,5 @@
 PKG_NAME := libsoup
-URL := http://ftp.gnome.org/pub/gnome/sources/libsoup/2.54/libsoup-2.54.1.tar.xz
+URL := https://download.gnome.org/sources/libsoup/2.56/libsoup-2.56.0.tar.xz
 
 
 include ../common/Makefile.common
