@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.58.0
-Release  : 12
+Release  : 13
 URL      : https://download.gnome.org/sources/libsoup/2.58/libsoup-2.58.0.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/2.58/libsoup-2.58.0.tar.xz
 Summary  : a glib-based HTTP library
