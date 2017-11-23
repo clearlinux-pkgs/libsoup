@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.60.2
-Release  : 19
+Release  : 20
 URL      : https://download.gnome.org/sources/libsoup/2.60/libsoup-2.60.2.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/2.60/libsoup-2.60.2.tar.xz
 Summary  : a glib-based HTTP library
@@ -31,7 +31,6 @@ BuildRequires : gobject-introspection-dev
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : intltool
-BuildRequires : krb5-dev32
 BuildRequires : libxslt-bin
 BuildRequires : perl(XML::Parser)
 BuildRequires : pkgconfig(32glib-2.0)
@@ -121,7 +120,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1510777851
+export SOURCE_DATE_EPOCH=1511468293
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -141,7 +140,7 @@ export LDFLAGS="$LDFLAGS -m32"
 make V=1  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1510777851
+export SOURCE_DATE_EPOCH=1511468293
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32

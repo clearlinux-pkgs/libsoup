@@ -8,5 +8,4 @@ gobject-introspection-dev
 gobject-introspection
 glib-networking-lib32
 curl-dev32
-krb5-dev32
 e2fsprogs-dev32
