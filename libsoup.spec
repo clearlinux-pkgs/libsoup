@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.60.3
-Release  : 21
+Release  : 22
 URL      : https://download.gnome.org/sources/libsoup/2.60/libsoup-2.60.3.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/2.60/libsoup-2.60.3.tar.xz
 Summary  : a glib-based HTTP library
