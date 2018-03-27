@@ -1,5 +1,5 @@
 PKG_NAME := libsoup
-URL = https://download.gnome.org/sources/libsoup/2.60/libsoup-2.60.3.tar.xz
-
+URL = https://download.gnome.org/sources/libsoup/2.62/libsoup-2.62.0.tar.xz
+ARCHIVES = 
 
 include ../common/Makefile.common
