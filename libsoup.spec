@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.62.3
-Release  : 27
+Release  : 28
 URL      : https://download.gnome.org/sources/libsoup/2.62/libsoup-2.62.3.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/2.62/libsoup-2.62.3.tar.xz
 Summary  : a glib-based HTTP library
@@ -132,7 +132,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1533908887
+export SOURCE_DATE_EPOCH=1536133699
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -152,7 +152,7 @@ export LDFLAGS="$LDFLAGS -m32"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1533908887
+export SOURCE_DATE_EPOCH=1536133699
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/libsoup
 cp COPYING %{buildroot}/usr/share/doc/libsoup/COPYING
