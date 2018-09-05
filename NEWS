@@ -1,37 +1,63 @@
-Changes in libsoup from 2.62.2 to 2.62.3:
+Changes in libsoup from 2.63.92 to 2.64.0:
 
-	* Check for trailing dots in domains [#5, Claudio Saavedra]
+	* Many fixes to the meson build system [#7, #8, #9, #11, Tomas Popela]
+	* Updated translations: Brazilian Portuguese, Galician,
+          Hungarian, Latvian, Danish.
+
+Changes in libsoup from 2.63.91 to 2.63.92:
+
+	* Make sure that XMLRPC tests build in Debian too [Claudio Saavedra]
+	* Distribute missing meson files [Claudio Saavedra]
+	* Some fixes to the meson build files [Claudio Saavedra]
+	* Updated Korean and Swedish translations
+
+Changes in libsoup from 2.63.90 to 2.63.91:
+
+	* Simplify soup_hosts_matches_host() [Claudio Saavedra]
+	* Add new tests for trailing dots in domain names [Claudio Saavedra]
+	* Updated Turkish translation
+
+Changes in libsoup from 2.63.2 to 2.63.90:
+
 	* Set default cookie path for NULL origins [#1, Adrian Perez de Castro]
+	* Fixes to GObject-introspection [bgo#794787, Corentin Noël]
 	* Use atomic-refcounting in classes that are not using GObject-refcounting
 	  [bgo#785110, Edward Hervey]
 	* Many Coverity-found code fixes [bgo#781771, Milan Crha]
 	* Bail out on cookie-jar calls with empty hostnames [#3, Michael Catanzaro]
+	* Fixes to the simple-httpd example [#2, Mooffie]
+	* Updated translations: Chinese (Taiwan), Catalan
 
 	Note: from now onwards bgo# references bugs in GNOME Bugzilla
 	and # issues in GNOME gitlab.
 
-Changes in libsoup from 2.62.1 to 2.62.2:
+Changes in libsoup from 2.63.1 to 2.63.2:
 
-	* Fixes to instrospection annotation [#795135,
-	Claudio Saavedra]
+	* Many fixes to the meson build system support [#795324,
+          #782410, Tomas Popela, Jan Alexander Steffens]
+	* Fixes to xmlrpc-server test with PHP >= 7.2 and related
+	  [#795111, #782410 Jan Alexander Steffens]
+	* Fix critical warning in SoupSocket [Carlos Garcia Campos]
+	* Updated translations: Romanian, Friulian, Slovenian,
+	  Czech, Spanish, Indonesian, Chinese (China).
 
-	* Fixes to the test suite with PHP version >= 7.2
-	[#795111, Jan Alexander Steffens]
+Changes in libsoup from 2.62.0 to 2.63.1:
 
-	* Critical warning fixes to SoupSocket [Carlos Garcia Campos]
-
-	* Updated Romanian translation.
-
-Changes in libsoup from 2.62.0 to 2.62.1:
-
-	* Fix digest authentication with encoded URIs
-	  [#794208, Claudio Saavedra]
+	* Fix digest authentication with encoded URIs [#794208,
+	  Claudio Saavedra]
 	* Avoid unaligned memory accesses in WebSocket implementation
 	  [#794421, Rolf Eike Beer]
-	* Use base domain to decide if cookies are third-party
-	  [#792130, Michael Catanzaro]
-	* Fix crash under soup_socket_new()
-	  [#762138, Milan Crha]
+	* Use base domain to decide if cookies are third-party [#792130,
+	  Michael Catanzaro]
+	* Fix crash under soup_socket_new() [#762138, Milan Crha]
+	* Use libpsl for the SoupTLD API instead of shipping a copy of
+	  the public-suffix list [#769650, Claudio Saavedra]
+	* Introspection documentation fixes [#795135, Claudio Saavedra]
+	* Minor cleanups and fixes [Tomas Popela]
+	* Initial meson build system support [#784212, Sebastian Dröge,
+	  Chun-wei Fan, Tomas Popela]
+	* Various fixes to the meson build system [#795233, Iñigo Martinez]
+	* Updated translations: Chinese, Croatian, Italian, Slovak.
 
 Changes in libsoup from 2.61.91 to 2.62.0:
 
