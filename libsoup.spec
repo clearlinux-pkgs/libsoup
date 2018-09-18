@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.64.0
-Release  : 29
+Release  : 30
 URL      : https://download.gnome.org/sources/libsoup/2.64/libsoup-2.64.0.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/2.64/libsoup-2.64.0.tar.xz
 Summary  : a glib-based HTTP library
@@ -14,7 +14,7 @@ Requires: libsoup-data
 Requires: libsoup-lib
 Requires: libsoup-license
 Requires: libsoup-locales
-BuildRequires : buildreq-gnome
+Requires: glib-networking
 BuildRequires : buildreq-meson
 BuildRequires : curl-dev32
 BuildRequires : docbook-xml
@@ -61,9 +61,9 @@ data components for the libsoup package.
 %package dev
 Summary: dev components for the libsoup package.
 Group: Development
-Requires: libsoup-lib
-Requires: libsoup-data
-Provides: libsoup-devel
+Requires: libsoup-lib = %{version}-%{release}
+Requires: libsoup-data = %{version}-%{release}
+Provides: libsoup-devel = %{version}-%{release}
 
 %description dev
 dev components for the libsoup package.
@@ -72,9 +72,9 @@ dev components for the libsoup package.
 %package dev32
 Summary: dev32 components for the libsoup package.
 Group: Default
-Requires: libsoup-lib32
-Requires: libsoup-data
-Requires: libsoup-dev
+Requires: libsoup-lib32 = %{version}-%{release}
+Requires: libsoup-data = %{version}-%{release}
+Requires: libsoup-dev = %{version}-%{release}
 
 %description dev32
 dev32 components for the libsoup package.
@@ -91,8 +91,8 @@ doc components for the libsoup package.
 %package lib
 Summary: lib components for the libsoup package.
 Group: Libraries
-Requires: libsoup-data
-Requires: libsoup-license
+Requires: libsoup-data = %{version}-%{release}
+Requires: libsoup-license = %{version}-%{release}
 
 %description lib
 lib components for the libsoup package.
@@ -101,8 +101,8 @@ lib components for the libsoup package.
 %package lib32
 Summary: lib32 components for the libsoup package.
 Group: Default
-Requires: libsoup-data
-Requires: libsoup-license
+Requires: libsoup-data = %{version}-%{release}
+Requires: libsoup-license = %{version}-%{release}
 
 %description lib32
 lib32 components for the libsoup package.
@@ -135,7 +135,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1536145062
+export SOURCE_DATE_EPOCH=1537238289
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -155,7 +155,7 @@ export LDFLAGS="$LDFLAGS -m32"
 make  %{?_smp_mflags}
 popd
 %install
-export SOURCE_DATE_EPOCH=1536145062
+export SOURCE_DATE_EPOCH=1537238289
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/libsoup
 cp COPYING %{buildroot}/usr/share/doc/libsoup/COPYING
