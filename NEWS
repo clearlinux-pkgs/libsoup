@@ -1,13 +1,52 @@
-Changes in libsoup from 2.64.1 to 2.64.2:
+Changes in libsoup from 2.65.92 to 2.66.0:
 
-	* TLD tests updated (Claudio Saavedra)
-	* Updated translations: Serbian
+        * Fix lookup for libxml2 on Visual Studio builds [Chun-wei Fan]
 
-Changes in libsoup from 2.63.92 to 2.64.1:
+Changes in libsoup from 2.65.91 to 2.65.92:
 
-	* Many fixes to the meson build system (which, by the way, is
-	  NOT official yet) (#13, Tomas Popela)
-	* Updated translations: Belarusian.
+        * SoupConnection: Fix check for remote disconnectin idle state
+          [Michael Catanzaro, #134]
+
+        * Code cleanups and warnings fixed [Michael Catanzaro]
+
+        * Remove stale .pc.in files [Claudio Saavedra, #137]
+
+        * Updated translations: Dutch
+
+Changes in libsoup from 2.65.90 to 2.65.91:
+
+	* Remove RFCs from sources [Tomas Popela, #133]
+
+Changes in libsoup from 2.65.2 to 2.65.90:
+
+        * Avoid using threads in SoupRequestFile asynchronous API
+          [Ignacio Casal Quinteiro]
+
+Changes in libsoup from 2.65.1 to 2.65.2:
+
+	* Remove autotools build system and change to meson by default
+          [#12, Tomas Popela]
+
+	* Many fixes to Meson [Claudio Saavedra, Tomas Popela, Xavier
+          Claessens]
+
+	* Improvements to the continuous integration infrastructure
+          [Xavier Claessens]
+
+	* Make sure SoupSession features are not disposed until all
+          pending messages are processed [#130, Claudio Saavedra]
+
+	* Updated translations: Greek, Slovak, French.
+
+Changes in libsoup from 2.64.0 to 2.65.1:
+
+	* Added MTLMv2 responses support [Michal Hrubý]
+	* Many fixes to the meson build system [Tomas Popela]
+	* Remove Visual Studio project files [Chun-wei Fan]
+	* Enable VAPI by default [#119, Jeremy Bicha]
+	* New strict header field parameter parsing API [Claudio Saavedra]
+	* Code cleanups [Claudio Saavedra]
+	* Updated translations: Belarusian, Serbian
 
 Changes in libsoup from 2.63.92 to 2.64.0:
 

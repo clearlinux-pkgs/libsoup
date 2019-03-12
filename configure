@@ -1,1 +1,1 @@
---enable-introspection --disable-vala --without-gssapi
+-Dgssapi=false

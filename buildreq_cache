@@ -1,2 +1,5 @@
-2.64.2
+2.66.0
+krb5-dev
+libpsl-dev
 pkg-config
+sqlite-autoconf-dev
