@@ -15,3 +15,5 @@ libxml2-dev32
 libxml2-dev
 sqlite-autoconf-dev32
 libpsl-dev32
+zlib-dev32
+zlib-dev

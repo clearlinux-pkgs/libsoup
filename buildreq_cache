@@ -1,5 +1,7 @@
-2.66.0
+2.68.0
 krb5-dev
 libpsl-dev
 pkg-config
+pkgconfig(32libbrotlidec)
+pkgconfig(libbrotlidec)
 sqlite-autoconf-dev

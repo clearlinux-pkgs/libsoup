@@ -5,3 +5,4 @@ libgobject-2.0.so.0
 libpsl.so.5
 libsqlite3.so.0
 libxml2.so.2
+libz.so.1
