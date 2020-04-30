@@ -1,1 +1,1 @@
--Dgssapi=disabled
+-Dgssapi=disabled -Dinstalled_tests=true

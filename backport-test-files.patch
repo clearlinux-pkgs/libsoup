@@ -1,0 +1,54 @@
+From 0232368c0fc0d58b4af0a519d9dcd848e50b6e45 Mon Sep 17 00:00:00 2001
+From: Ross Burton <ross.burton@intel.com>
+Date: Wed, 15 Apr 2020 17:12:00 +0100
+Subject: [PATCH] tests: always install test data
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The files test-cert.pem, test-key.pem, and index.txt are used in several
+tests, not just the ones using Apache:
+
+ross@bob /usr/libexec/installed-tests/libsoup-2.4 $ ./chunk-test
+Unable to create server: Failed to open file “./test-key.pem”: No such
+file or directory
+
+Always install these files if installed tests are enabled, not just when
+apache tests are enabled.
+---
+ tests/meson.build | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/tests/meson.build b/tests/meson.build
+index 119bf166..5482aa86 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -23,6 +23,15 @@ test_resources = gnome.compile_resources('soup-tests',
+   install_dir : installed_tests_execdir,
+ )
+ 
++if installed_tests_enabled
++  install_data(
++    'index.txt',
++    'test-cert.pem',
++    'test-key.pem',
++    install_dir : installed_tests_execdir
++  )
++endif
++
+ # ['name', is_parallel, extra_deps]
+ tests = [
+   ['cache', true, []],
+@@ -107,9 +116,6 @@ if have_apache
+ 
+   if installed_tests_enabled
+     install_data(
+-      'index.txt',
+-      'test-cert.pem',
+-      'test-key.pem',
+       'htdigest',
+       'htpasswd',
+       install_dir : installed_tests_execdir,
+-- 
+2.24.1
+

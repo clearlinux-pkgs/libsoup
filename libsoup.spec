@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 2.70.0
-Release  : 42
+Release  : 43
 URL      : https://download.gnome.org/sources/libsoup/2.70/libsoup-2.70.0.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/2.70/libsoup-2.70.0.tar.xz
 Summary  : No detailed summary available
@@ -17,6 +17,7 @@ Requires: libsoup-locales = %{version}-%{release}
 Requires: glib-networking
 BuildRequires : buildreq-gnome
 BuildRequires : buildreq-meson
+BuildRequires : curl
 BuildRequires : curl-dev32
 BuildRequires : e2fsprogs-dev
 BuildRequires : e2fsprogs-dev32
@@ -40,6 +41,7 @@ BuildRequires : vala
 BuildRequires : vala-dev
 BuildRequires : zlib-dev
 BuildRequires : zlib-dev32
+Patch1: backport-test-files.patch
 
 %description
 libsoup is an HTTP client/server library for GNOME. It uses GObjects
@@ -112,9 +114,20 @@ Group: Default
 locales components for the libsoup package.
 
 
+%package tests
+Summary: tests components for the libsoup package.
+Group: Default
+Requires: libsoup = %{version}-%{release}
+Requires: curl
+
+%description tests
+tests components for the libsoup package.
+
+
 %prep
 %setup -q -n libsoup-2.70.0
 cd %{_builddir}/libsoup-2.70.0
+%patch1 -p1
 pushd ..
 cp -a libsoup-2.70.0 build32
 popd
@@ -124,16 +137,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1585172912
+export SOURCE_DATE_EPOCH=1588787074
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -Os -fdata-sections -ffat-lto-objects -ffunction-sections -flto=4 -fno-semantic-interposition "
-CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dgssapi=disabled  builddir
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dgssapi=disabled -Dinstalled_tests=true  builddir
 ninja -v -C builddir
 pushd ../build32/
 export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
@@ -141,7 +154,7 @@ export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
 export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
-meson --libdir=lib32 --prefix=/usr --buildtype=plain -Dgssapi=disabled  builddir
+meson --libdir=lib32 --prefix=/usr --buildtype=plain -Dgssapi=disabled -Dinstalled_tests=true  builddir
 ninja -v -C builddir
 popd
 
@@ -268,6 +281,77 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/libsoup/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+
+%files tests
+%defattr(-,root,root,-)
+/usr/libexec/installed-tests/libsoup-2.4/cache-test
+/usr/libexec/installed-tests/libsoup-2.4/chunk-io-test
+/usr/libexec/installed-tests/libsoup-2.4/chunk-test
+/usr/libexec/installed-tests/libsoup-2.4/coding-test
+/usr/libexec/installed-tests/libsoup-2.4/context-test
+/usr/libexec/installed-tests/libsoup-2.4/continue-test
+/usr/libexec/installed-tests/libsoup-2.4/cookies-test
+/usr/libexec/installed-tests/libsoup-2.4/date-test
+/usr/libexec/installed-tests/libsoup-2.4/forms-test
+/usr/libexec/installed-tests/libsoup-2.4/header-parsing-test
+/usr/libexec/installed-tests/libsoup-2.4/hsts-db-test
+/usr/libexec/installed-tests/libsoup-2.4/hsts-test
+/usr/libexec/installed-tests/libsoup-2.4/index.txt
+/usr/libexec/installed-tests/libsoup-2.4/libtest-utils.so
+/usr/libexec/installed-tests/libsoup-2.4/misc-test
+/usr/libexec/installed-tests/libsoup-2.4/multipart-test
+/usr/libexec/installed-tests/libsoup-2.4/no-ssl-test
+/usr/libexec/installed-tests/libsoup-2.4/ntlm-test
+/usr/libexec/installed-tests/libsoup-2.4/ntlm-test-helper
+/usr/libexec/installed-tests/libsoup-2.4/redirect-test
+/usr/libexec/installed-tests/libsoup-2.4/requester-test
+/usr/libexec/installed-tests/libsoup-2.4/resource-test
+/usr/libexec/installed-tests/libsoup-2.4/samesite-test
+/usr/libexec/installed-tests/libsoup-2.4/server-auth-test
+/usr/libexec/installed-tests/libsoup-2.4/server-test
+/usr/libexec/installed-tests/libsoup-2.4/session-test
+/usr/libexec/installed-tests/libsoup-2.4/sniffing-test
+/usr/libexec/installed-tests/libsoup-2.4/socket-test
+/usr/libexec/installed-tests/libsoup-2.4/soup-tests.gresource
+/usr/libexec/installed-tests/libsoup-2.4/ssl-test
+/usr/libexec/installed-tests/libsoup-2.4/streaming-test
+/usr/libexec/installed-tests/libsoup-2.4/test-cert.pem
+/usr/libexec/installed-tests/libsoup-2.4/test-key.pem
+/usr/libexec/installed-tests/libsoup-2.4/timeout-test
+/usr/libexec/installed-tests/libsoup-2.4/tld-test
+/usr/libexec/installed-tests/libsoup-2.4/uri-parsing-test
+/usr/libexec/installed-tests/libsoup-2.4/websocket-test
+/usr/share/installed-tests/libsoup-2.4/cache-test.test
+/usr/share/installed-tests/libsoup-2.4/chunk-io-test.test
+/usr/share/installed-tests/libsoup-2.4/chunk-test.test
+/usr/share/installed-tests/libsoup-2.4/coding-test.test
+/usr/share/installed-tests/libsoup-2.4/context-test.test
+/usr/share/installed-tests/libsoup-2.4/continue-test.test
+/usr/share/installed-tests/libsoup-2.4/cookies-test.test
+/usr/share/installed-tests/libsoup-2.4/date-test.test
+/usr/share/installed-tests/libsoup-2.4/forms-test.test
+/usr/share/installed-tests/libsoup-2.4/header-parsing-test.test
+/usr/share/installed-tests/libsoup-2.4/hsts-db-test.test
+/usr/share/installed-tests/libsoup-2.4/hsts-test.test
+/usr/share/installed-tests/libsoup-2.4/misc-test.test
+/usr/share/installed-tests/libsoup-2.4/multipart-test.test
+/usr/share/installed-tests/libsoup-2.4/no-ssl-test.test
+/usr/share/installed-tests/libsoup-2.4/ntlm-test.test
+/usr/share/installed-tests/libsoup-2.4/redirect-test.test
+/usr/share/installed-tests/libsoup-2.4/requester-test.test
+/usr/share/installed-tests/libsoup-2.4/resource-test.test
+/usr/share/installed-tests/libsoup-2.4/samesite-test.test
+/usr/share/installed-tests/libsoup-2.4/server-auth-test.test
+/usr/share/installed-tests/libsoup-2.4/server-test.test
+/usr/share/installed-tests/libsoup-2.4/session-test.test
+/usr/share/installed-tests/libsoup-2.4/sniffing-test.test
+/usr/share/installed-tests/libsoup-2.4/socket-test.test
+/usr/share/installed-tests/libsoup-2.4/ssl-test.test
+/usr/share/installed-tests/libsoup-2.4/streaming-test.test
+/usr/share/installed-tests/libsoup-2.4/timeout-test.test
+/usr/share/installed-tests/libsoup-2.4/tld-test.test
+/usr/share/installed-tests/libsoup-2.4/uri-parsing-test.test
+/usr/share/installed-tests/libsoup-2.4/websocket-test.test
 
 %files locales -f libsoup.lang
 %defattr(-,root,root,-)
