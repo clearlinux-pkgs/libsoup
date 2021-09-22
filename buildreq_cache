@@ -1,0 +1,5 @@
+3.0.0
+glib-dev
+gnutls-dev
+pkgconfig(gnutls)
+pkgconfig(libnghttp2)
