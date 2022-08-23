@@ -4,7 +4,7 @@
 #
 Name     : libsoup
 Version  : 3.0.7
-Release  : 60
+Release  : 61
 URL      : https://download.gnome.org/sources/libsoup/3.0/libsoup-3.0.7.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/3.0/libsoup-3.0.7.tar.xz
 Summary  : No detailed summary available
