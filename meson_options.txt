@@ -47,10 +47,16 @@ option('vapi',
   description : 'Build Vala bindings'
 )
 
-option('gtk_doc',
+option('docs',
+  type: 'feature',
+  value: 'auto',
+  description: 'Enable generating the API reference'
+)
+
+option('doc_tests',
   type: 'boolean',
   value: false,
-  description: 'Enable generating the API reference'
+  description: 'Enable strict validation of API docs'
 )
 
 option('tests',
@@ -81,12 +87,6 @@ option('fuzzing',
   type: 'feature',
   value: 'disabled',
   description: 'enable fuzzing support'
-)
-
-option('http2_tests',
-  type: 'feature',
-  value: 'auto',
-  description: 'enable HTTP/2 tests depending on quart'
 )
 
 option('pkcs11_tests',

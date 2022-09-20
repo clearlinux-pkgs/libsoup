@@ -1,4 +1,6 @@
-3.0.8
+3.2.0
+gi-docgen
 gnutls-dev
+pkgconfig(gi-docgen)
 pkgconfig(gnutls)
 pkgconfig(libnghttp2)
