@@ -1,3 +1,35 @@
+Changes in libsoup from 3.3.1 to 3.4.0:
+
+* Fix possible crash in SoupContentSniffer [Patrick Griffis ]
+* Fix socket leak [Alessandro Bono]
+* Add missing annotation to soup_header_g_string_append_param_quoted() [Lukáš Tyrychtr]
+
+Changes in libsoup from 3.3.0 to 3.3.1:
+
+* Fix regression in `SoupCookieJar` not handling valid Secure cookies [Patrick Griffis]
+* Fix crash when skipping HTTP/1 response stream with chunked enconding [Carlos Garcia Campos]
+* Change Session to unqueue finished items earlier without an extra MainContext iteration [Carlos Garcia Campos]
+
+Changes in libsoup from 3.2.2 to 3.3.0:
+
+* Add `SoupMessage::got-body-data` signal to monitor progress of reads [Carlos Garcia Campos]
+* Add `soup_session_send_and_splice()` and `soup_session_send_and_splice_async()` convenience APIs [Carlos Garcia Campos]
+* Add `soup_message_set_force_http1()` and `soup_message_get_force_http1()` APIs [Milan Crha]
+* Change `soup_cookie_copy()` to not retain default ports [Patrick Griffis]
+* Ensure `SoupServerMessage` socket is available in websocket handler [Carlos Garcia Campos]
+* Fix `soup_message_new()` not erroring when URI has an empty host [Guillaume Desmottes]
+* Fix thread-saftey issues in `SoupConnectionAuth` [Milan Crha]
+* Fix various connection leaks [Biagio Festa, Carlos Garcia Campos]
+* Fix the possibility of sending invalid empty `Sec-WebSocket-Protocol` header [Lukáš Tyrychtr]
+* Fix IO errors not being handled on `CONNECT` messages [Carlos Garcia Campos]
+* Numerous improvements to cookies:
+    * Add support for cookie prefixes (`__Secure-` and `__Host-`) [Siwei Li]
+    * Reject cookies with control characters in name or value [Siwei Li]
+    * Reject `SameSite=None` cookies without `Secure` [Siwei Li]
+    * Change `soup_cookie_parse()` to be more strict about what is considered whitespace [Siwei Li]
+    * Change default SameSite value to `Lax` [Amanda Falke]
+    * Fix `soup_cookie_equal()` with `NULL` path [Patrick Griffis]
+
 Changes in libsoup from 3.2.1 to 3.2.2:
 
 * Various HTTP/2 Fixes: [Carlos Garcia Campos]
