@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : libsoup
-Version  : 3.4.0
-Release  : 72
-URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.0.tar.xz
-Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.0.tar.xz
+Version  : 3.4.1
+Release  : 73
+URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.1.tar.xz
+Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.1.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0
@@ -113,10 +113,10 @@ tests components for the libsoup package.
 
 
 %prep
-%setup -q -n libsoup-3.4.0
-cd %{_builddir}/libsoup-3.4.0
+%setup -q -n libsoup-3.4.1
+cd %{_builddir}/libsoup-3.4.1
 pushd ..
-cp -a libsoup-3.4.0 buildavx2
+cp -a libsoup-3.4.1 buildavx2
 popd
 
 %build
@@ -124,7 +124,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680039360
+export SOURCE_DATE_EPOCH=1682087529
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
