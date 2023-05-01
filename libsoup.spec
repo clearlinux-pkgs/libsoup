@@ -4,15 +4,14 @@
 # Using build pattern: meson
 #
 Name     : libsoup
-Version  : 3.4.1
-Release  : 73
-URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.1.tar.xz
-Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.1.tar.xz
+Version  : 3.4.2
+Release  : 74
+URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
+Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0
 Requires: libsoup-data = %{version}-%{release}
-Requires: libsoup-filemap = %{version}-%{release}
 Requires: libsoup-lib = %{version}-%{release}
 Requires: libsoup-license = %{version}-%{release}
 Requires: libsoup-locales = %{version}-%{release}
@@ -67,20 +66,11 @@ Requires: libsoup = %{version}-%{release}
 dev components for the libsoup package.
 
 
-%package filemap
-Summary: filemap components for the libsoup package.
-Group: Default
-
-%description filemap
-filemap components for the libsoup package.
-
-
 %package lib
 Summary: lib components for the libsoup package.
 Group: Libraries
 Requires: libsoup-data = %{version}-%{release}
 Requires: libsoup-license = %{version}-%{release}
-Requires: libsoup-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libsoup package.
@@ -113,10 +103,10 @@ tests components for the libsoup package.
 
 
 %prep
-%setup -q -n libsoup-3.4.1
-cd %{_builddir}/libsoup-3.4.1
+%setup -q -n libsoup-3.4.2
+cd %{_builddir}/libsoup-3.4.2
 pushd ..
-cp -a libsoup-3.4.1 buildavx2
+cp -a libsoup-3.4.2 buildavx2
 popd
 
 %build
@@ -124,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682087529
+export SOURCE_DATE_EPOCH=1682963025
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -164,6 +154,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files dev
 %defattr(-,root,root,-)
+/V3/usr/lib64/libsoup-3.0.so
 /usr/include/libsoup-3.0/libsoup/soup-auth-domain-basic.h
 /usr/include/libsoup-3.0/libsoup/soup-auth-domain-digest.h
 /usr/include/libsoup-3.0/libsoup/soup-auth-domain.h
@@ -206,18 +197,13 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/include/libsoup-3.0/libsoup/soup-websocket-extension.h
 /usr/include/libsoup-3.0/libsoup/soup-websocket.h
 /usr/include/libsoup-3.0/libsoup/soup.h
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsoup-3.0.so
 /usr/lib64/libsoup-3.0.so
 /usr/lib64/pkgconfig/libsoup-3.0.pc
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-libsoup
-
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsoup-3.0.so.0
-/usr/lib64/glibc-hwcaps/x86-64-v3/libsoup-3.0.so.0.7.0
+/V3/usr/lib64/libsoup-3.0.so.0
+/V3/usr/lib64/libsoup-3.0.so.0.7.0
 /usr/lib64/libsoup-3.0.so.0
 /usr/lib64/libsoup-3.0.so.0.7.0
 
@@ -227,6 +213,42 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files tests
 %defattr(-,root,root,-)
+/V3/usr/libexec/installed-tests/libsoup-3.0/cache-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/chunk-io-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/coding-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/context-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/continue-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/cookies-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/date-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/forms-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/header-parsing-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/hsts-db-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/hsts-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/http2-body-stream-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/http2-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/libtest-utils.so
+/V3/usr/libexec/installed-tests/libsoup-3.0/logger-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/misc-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/mock-pkcs11.so
+/V3/usr/libexec/installed-tests/libsoup-3.0/multipart-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/multithread-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/no-ssl-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/ntlm-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/ntlm-test-helper
+/V3/usr/libexec/installed-tests/libsoup-3.0/redirect-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/request-body-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/samesite-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/server-auth-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/server-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/session-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/sniffing-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/ssl-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/streaming-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/timeout-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/tld-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/unix-socket-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/uri-parsing-test
+/V3/usr/libexec/installed-tests/libsoup-3.0/websocket-test
 /usr/libexec/installed-tests/libsoup-3.0/cache-test
 /usr/libexec/installed-tests/libsoup-3.0/chunk-io-test
 /usr/libexec/installed-tests/libsoup-3.0/coding-test
@@ -269,7 +291,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/libexec/installed-tests/libsoup-3.0/unix-socket-test
 /usr/libexec/installed-tests/libsoup-3.0/uri-parsing-test
 /usr/libexec/installed-tests/libsoup-3.0/websocket-test
-/usr/share/clear/optimized-elf/test*
 /usr/share/installed-tests/libsoup-3.0/cache-test.test
 /usr/share/installed-tests/libsoup-3.0/chunk-io-test.test
 /usr/share/installed-tests/libsoup-3.0/coding-test.test
