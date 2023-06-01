@@ -5,7 +5,7 @@
 #
 Name     : libsoup
 Version  : 3.4.2
-Release  : 75
+Release  : 76
 URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
 Summary  : No detailed summary available
@@ -114,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683050210
+export SOURCE_DATE_EPOCH=1685636601
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -154,7 +154,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsoup-3.0.so
 /usr/include/libsoup-3.0/libsoup/soup-auth-domain-basic.h
 /usr/include/libsoup-3.0/libsoup/soup-auth-domain-digest.h
 /usr/include/libsoup-3.0/libsoup/soup-auth-domain.h
@@ -202,7 +201,6 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsoup-3.0.so.0
 /V3/usr/lib64/libsoup-3.0.so.0.7.0
 /usr/lib64/libsoup-3.0.so.0
 /usr/lib64/libsoup-3.0.so.0.7.0
