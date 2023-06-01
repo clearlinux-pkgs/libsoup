@@ -5,7 +5,7 @@
 #
 Name     : libsoup
 Version  : 3.4.2
-Release  : 76
+Release  : 77
 URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
 Summary  : No detailed summary available
@@ -114,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685636601
+export SOURCE_DATE_EPOCH=1685644969
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
