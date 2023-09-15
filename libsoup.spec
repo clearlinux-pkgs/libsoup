@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : libsoup
-Version  : 3.4.2
-Release  : 77
-URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
-Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.2.tar.xz
+Version  : 3.4.3
+Release  : 78
+URL      : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.3.tar.xz
+Source0  : https://download.gnome.org/sources/libsoup/3.4/libsoup-3.4.3.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0
@@ -103,10 +103,10 @@ tests components for the libsoup package.
 
 
 %prep
-%setup -q -n libsoup-3.4.2
-cd %{_builddir}/libsoup-3.4.2
+%setup -q -n libsoup-3.4.3
+cd %{_builddir}/libsoup-3.4.3
 pushd ..
-cp -a libsoup-3.4.2 buildavx2
+cp -a libsoup-3.4.3 buildavx2
 popd
 
 %build
@@ -114,7 +114,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685644969
+export SOURCE_DATE_EPOCH=1694798149
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -211,6 +211,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files tests
 %defattr(-,root,root,-)
+/V3/usr/libexec/installed-tests/libsoup-3.0/brotli-decompressor-test
 /V3/usr/libexec/installed-tests/libsoup-3.0/cache-test
 /V3/usr/libexec/installed-tests/libsoup-3.0/chunk-io-test
 /V3/usr/libexec/installed-tests/libsoup-3.0/coding-test
@@ -247,6 +248,10 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /V3/usr/libexec/installed-tests/libsoup-3.0/unix-socket-test
 /V3/usr/libexec/installed-tests/libsoup-3.0/uri-parsing-test
 /V3/usr/libexec/installed-tests/libsoup-3.0/websocket-test
+/usr/libexec/installed-tests/libsoup-3.0/brotli-data/compressed.br
+/usr/libexec/installed-tests/libsoup-3.0/brotli-data/corrupt.br
+/usr/libexec/installed-tests/libsoup-3.0/brotli-data/uncompressed.txt
+/usr/libexec/installed-tests/libsoup-3.0/brotli-decompressor-test
 /usr/libexec/installed-tests/libsoup-3.0/cache-test
 /usr/libexec/installed-tests/libsoup-3.0/chunk-io-test
 /usr/libexec/installed-tests/libsoup-3.0/coding-test
@@ -289,6 +294,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/libexec/installed-tests/libsoup-3.0/unix-socket-test
 /usr/libexec/installed-tests/libsoup-3.0/uri-parsing-test
 /usr/libexec/installed-tests/libsoup-3.0/websocket-test
+/usr/share/installed-tests/libsoup-3.0/brotli-decompressor-test.test
 /usr/share/installed-tests/libsoup-3.0/cache-test.test
 /usr/share/installed-tests/libsoup-3.0/chunk-io-test.test
 /usr/share/installed-tests/libsoup-3.0/coding-test.test

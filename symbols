@@ -40,6 +40,7 @@ libsoup-3.0.so.0:soup_auth_negotiate_supported
 libsoup-3.0.so.0:soup_auth_new
 libsoup-3.0.so.0:soup_auth_ntlm_get_type
 libsoup-3.0.so.0:soup_auth_update
+libsoup-3.0.so.0:soup_brotli_decompressor_get_type
 libsoup-3.0.so.0:soup_cache_clear
 libsoup-3.0.so.0:soup_cache_dump
 libsoup-3.0.so.0:soup_cache_flush
