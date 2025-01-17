@@ -6,10 +6,10 @@
 # autospec commit: f4a13a5
 #
 Name     : libsoup
-Version  : 3.6.3
-Release  : 83
-URL      : https://download.gnome.org/sources/libsoup/3.6/libsoup-3.6.3.tar.xz
-Source0  : https://download.gnome.org/sources/libsoup/3.6/libsoup-3.6.3.tar.xz
+Version  : 3.6.4
+Release  : 84
+URL      : https://download.gnome.org/sources/libsoup/3.6/libsoup-3.6.4.tar.xz
+Source0  : https://download.gnome.org/sources/libsoup/3.6/libsoup-3.6.4.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.0
@@ -105,10 +105,10 @@ tests components for the libsoup package.
 
 
 %prep
-%setup -q -n libsoup-3.6.3
-cd %{_builddir}/libsoup-3.6.3
+%setup -q -n libsoup-3.6.4
+cd %{_builddir}/libsoup-3.6.4
 pushd ..
-cp -a libsoup-3.6.3 buildavx2
+cp -a libsoup-3.6.4 buildavx2
 popd
 
 %build
@@ -116,7 +116,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1736796293
+export SOURCE_DATE_EPOCH=1737075709
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -228,9 +228,9 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libsoup-3.0.so.0.7.2
+/V3/usr/lib64/libsoup-3.0.so.0.7.3
 /usr/lib64/libsoup-3.0.so.0
-/usr/lib64/libsoup-3.0.so.0.7.2
+/usr/lib64/libsoup-3.0.so.0.7.3
 
 %files license
 %defattr(0644,root,root,0755)
