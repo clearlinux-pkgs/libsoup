@@ -1,3 +1,20 @@
+
+Changes in libsoup from 3.6.4 to 3.6.5:
+
+* session: Strip authentication credentials on cross-origin redirects [Patrick Griffis]
+* build: Use pkg-config instead of krb5-config for the gssapi dependency [Patrick Griffis]
+* http1: When using chunked encoding report an error in case of unexpected stream end [Andrzej Surdej]
+* http2: When a message has no content still respect its Content-Type [Patrick Griffis]
+* http2: Revert manual window size management temporarily, as it could stall [Patrick Griffis]
+* sniffer: Fix potential overflows [Patrick Griffis]
+* hsts: Fix minor leak [Patrick Griffis]
+* headers: Fix a few parsing edge cases that could be an out of bound read [Patrick Griffis]
+* connection: Avoid ever calling disconnect twice [Patrick Griffis]
+* auth-digest: Fix handling when a nonce isn't present [Patrick Griffis]
+* cookies: Limit max size of max-age, path, and domain attributes to 1024 bytes [Patrick Griffis]
+* cookies: Limit max size of name and value to 4096 bytes [Patrick Griffis]
+* docs: Remove references to old libsoup domain [Simon McVittie]
+
 Changes in libsoup from 3.6.3 to 3.6.4:
 
 * http2: Fix regression on 32bit systems when reading response data [Andrzej Surdej]
@@ -132,7 +149,7 @@ Changes in libsoup from 3.1.1 to 3.1.2:
 
 Changes in libsoup from 3.0.7 to 3.1.1:
 
-* Reintroduce some thread-safety to SoupSession (see https://libsoup.org/libsoup-3.0/client-thread-safety.html) [Carlos Garcia Campos]
+* Reintroduce some thread-safety to SoupSession (see https://libsoup.gnome.org/libsoup-3.0/client-thread-safety.html) [Carlos Garcia Campos]
 * Add SoupServerMessage:tls-peer-certificate and SoupServerMessage:tls-peer-certificate-errors [Ignacio Casal Quinteiro]
 * Port docs to gi-docgen [Maximiliano Sandoval R]
 * Update documentation [Patrick Griffis]
@@ -323,7 +340,7 @@ Changes in libsoup from 2.99.1 to 2.99.2:
 Changes in libsoup from 2.72.0 to 2.99.1:
 
     * This is a major ABI breaking release that can be installed in parallel with 2.7x.
-      Numerous API have been changed which is documented on https://libsoup.org
+      Numerous API have been changed which is documented on https://libsoup.gnome.org
 
 Changes in libsoup from 2.71.1 to 2.72.0:
 
