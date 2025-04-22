@@ -7,7 +7,7 @@
 #
 Name     : libsoup
 Version  : 3.6.5
-Release  : 85
+Release  : 86
 URL      : https://download.gnome.org/sources/libsoup/3.6/libsoup-3.6.5.tar.xz
 Source0  : https://download.gnome.org/sources/libsoup/3.6/libsoup-3.6.5.tar.xz
 Summary  : No detailed summary available
